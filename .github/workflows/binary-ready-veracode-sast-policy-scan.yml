@@ -11,6 +11,11 @@ on:
     types: [binary-ready-veracode-sast-policy-scan]
 
 jobs:
+  cleanup:
+    uses: ./.github/workflows/veracode-clean-up.yml
+    with:
+      runs_on: ${{ github.event.client_payload.user_config.default_runs_on }}
+
   register:
     uses: ./.github/workflows/veracode-check-run.yml
     with:

@@ -187,10 +187,3 @@ jobs:
           repo_name: ${{ inputs.repo }}
           github-token: ${{ inputs.token }}
           commitHash: ${{ inputs.sha }}
-
-  cleanup:
-    needs: [policy_scan, veracode-remove-sandbox, code-scanning-alert, create-issues]
-    if: always()
-    uses: ./.github/workflows/veracode-clean-up.yml
-    with:
-      runs_on: ${{ inputs.default_runs_on }}

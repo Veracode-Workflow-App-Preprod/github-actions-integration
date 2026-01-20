@@ -205,10 +205,3 @@ jobs:
               status: 'completed',
               conclusion
             })
-
-  cleanup:
-    needs: update-checks-status
-    if: always()
-    uses: ./.github/workflows/veracode-clean-up.yml
-    with:
-      runs_on: ${{ inputs.default_runs_on }}
