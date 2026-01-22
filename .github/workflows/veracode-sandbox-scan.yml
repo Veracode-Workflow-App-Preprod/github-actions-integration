@@ -21,6 +21,11 @@ on:
       - ruby-sandbox-scan
 
 jobs:
+  cleanup:
+    uses: ./.github/workflows/veracode-clean-up.yml
+    with:
+      runs_on: ${{ github.event.client_payload.user_config.default_runs_on }}
+
   build:
     uses: ./.github/workflows/veracode-build-artifact-for-scanning.yml
     with:
@@ -68,10 +73,3 @@ jobs:
           failbuild: ${{ github.event.client_payload.user_config.break_build_policy_findings }}
           gitRepositoryUrl: ${{ github.server_url }}/${{ github.event.client_payload.repository.full_name }}
           deleteincompletescan: true
-
-  cleanup:
-    needs: sandbox_scan
-    if: always()
-    uses: ./.github/workflows/veracode-clean-up.yml
-    with:
-      runs_on: ${{ github.event.client_payload.user_config.default_runs_on }}
