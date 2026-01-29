@@ -17,6 +17,7 @@ jobs:
       runs_on: ${{ github.event.client_payload.user_config.default_runs_on }}
 
   sandbox_scan:
+    needs: cleanup
     runs-on: ${{ fromJSON(github.event.client_payload.user_config.default_runs_on) }}
     steps:
       - name: Download artifact
