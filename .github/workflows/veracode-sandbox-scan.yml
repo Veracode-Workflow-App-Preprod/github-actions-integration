@@ -27,6 +27,7 @@ jobs:
       runs_on: ${{ github.event.client_payload.user_config.default_runs_on }}
 
   build:
+    needs: cleanup
     uses: ./.github/workflows/veracode-build-artifact-for-scanning.yml
     with:
       repository: ${{ github.event.client_payload.repository.full_name }}
