@@ -54,6 +54,9 @@ on:
       default_runs_on:
         required: true
         type: string
+      debug:
+        required: false
+        type: string
 
 jobs:
   policy_scan:
@@ -99,6 +102,7 @@ jobs:
           gitRepositoryUrl: ${{ github.server_url }}/${{ inputs.source_repository }}
           deleteincompletescan: true
           workflowApp: true
+          debug: ${{ inputs.default_runs_on }}
 
       - name: Veracode Policy Results
         id: prepare-results
