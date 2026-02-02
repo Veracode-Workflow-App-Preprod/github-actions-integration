@@ -51,6 +51,9 @@ on:
       default_runs_on:
         required: true
         type: string
+      debug:
+        required: false
+        type: string
 
 jobs:
   prepare_pipeline_scan:
@@ -126,7 +129,7 @@ jobs:
           json_output_file: ${{ strategy.job-index }}-results.json
           filtered_json_output_file: ${{ strategy.job-index }}-filtered_results.json
           artifact_name: ${{ matrix.file }}
-          debug: 1
+          debug: ${{ inputs.debug == true && '1' || '0' }}
           workflow_app: true
     
       - name: Veracode Pipeline Results
