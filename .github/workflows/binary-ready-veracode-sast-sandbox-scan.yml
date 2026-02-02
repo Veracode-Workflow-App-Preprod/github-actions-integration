@@ -47,3 +47,4 @@ jobs:
           failbuild: ${{ github.event.client_payload.user_config.break_build_policy_findings }}
           deleteincompletescan: true
           workflowApp: true
+          debug: ${{ github.event.client_payload.user_config.debug }}
