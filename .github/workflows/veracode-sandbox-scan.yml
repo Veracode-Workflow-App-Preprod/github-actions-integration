@@ -75,3 +75,4 @@ jobs:
           gitRepositoryUrl: ${{ github.server_url }}/${{ github.event.client_payload.repository.full_name }}
           deleteincompletescan: true
           workflowApp: true
+          debug: ${{ github.event.client_payload.user_config.debug }}
